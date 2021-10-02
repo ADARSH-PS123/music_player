@@ -16,9 +16,11 @@ class SongProvider with ChangeNotifier {
   Duration duration = Duration(seconds: 0);
   double slidervalue = 0;
   double finalSlider = 0;
+
   List<SongInfo> songInfo = [];
   List<SongInfo> songs = [];
   bool textStatus = true;
+
   TextEditingController textController = TextEditingController();
   indexFromData() async {
     int? index = await AppData().getIndex();
@@ -31,22 +33,25 @@ class SongProvider with ChangeNotifier {
     await audioPlayer.setUrl(songInfo[songIndex].uri);
     audioPlayer.play();
     playStatus = true;
-
     notifyListeners();
+    debugPrint("playAudio called");
   }
 
   playAudio1() async {
     indexFromData();
     if (firstPlay) {
-      await audioPlayer.setUrl(songInfo[songIndex].uri);
+      //play remaing part of audio
+      audioPlayer.play();
       playStatus = true;
 
       notifyListeners();
     } else {
+      //play from begining
       await audioPlayer.setUrl(songInfo[songIndex].uri);
       audioPlayer.play();
       playStatus = true;
       firstPlay = true;
+
       notifyListeners();
     }
   }
@@ -130,12 +135,15 @@ class SongProvider with ChangeNotifier {
   }
 
   search(String value) {
+    songs = songInfo;
     songInfo = songInfo.where((element) {
       final searchName = value.toLowerCase();
       final songName = element.title.toLowerCase();
       return songName.contains(searchName);
     }).toList();
+
     debugPrint(value + ":::::");
+
     notifyListeners();
   }
 }
