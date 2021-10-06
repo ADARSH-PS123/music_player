@@ -1,3 +1,4 @@
+import 'package:flutter_application_1/appSearch.dart';
 import 'package:flutter_application_1/colors.dart' as AppColors;
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/providers/songProvider.dart';
@@ -24,11 +25,19 @@ class _FrameState extends State<Frame> {
         Padding(
           padding: EdgeInsets.all(screenWidth * .05),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
                 "Option Name",
                 style: TextStyle(fontSize: 23, color: AppColors.textColor),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.search,
+                  size: 25,
+                  color: AppColors.textColor,
+                ),
               ),
               Icon(
                 Icons.menu,
@@ -36,38 +45,6 @@ class _FrameState extends State<Frame> {
                 size: 25,
               )
             ],
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.only(
-              left: screenWidth * .09,
-              right: screenWidth * .09,
-              bottom: screenHeight * .02),
-          decoration: BoxDecoration(
-              color: AppColors.searchColor,
-              borderRadius: BorderRadius.circular(15)),
-          child: TextField(
-            controller: textEditingController,
-            onChanged: (value) {
-              if (textEditingController.text.isNotEmpty) {
-                context.read<SongProvider>().search(value);
-                context.read<SongProvider>().textStatus = false;
-              } else {
-                context.read<SongProvider>().textStatus = true;
-                context.read<SongProvider>().getSong();
-                debugPrint("???????????????????????");
-              }
-            },
-            decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: "    Search...",
-                hintStyle: TextStyle(color: AppColors.textColor, fontSize: 16),
-                suffixIcon: InkWell(
-                  child: Icon(
-                    Icons.search,
-                    color: AppColors.textColor,
-                  ),
-                )),
           ),
         ),
       ],

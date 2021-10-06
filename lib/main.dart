@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'dart:async';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/appSearch.dart';
 import 'package:flutter_application_1/frame.dart';
 import 'package:flutter_application_1/home.dart';
 import 'package:flutter_application_1/playScreen.dart';
@@ -17,13 +18,7 @@ void main() async {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: "/",
-        routes: {
-          "/": (context) => MyApp(),
-          "/home": (context) => Home(),
-          "/Frame": (context) => Frame(),
-          "/playscreen": (context) => PlayScreen(),
-        },
+        home: MyApp(),
       )));
 }
 
@@ -37,7 +32,8 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     Timer(Duration(milliseconds: 3000), () {
-      Navigator.pushNamed(context, '/home');
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => Home()));
     });
     super.initState();
   }

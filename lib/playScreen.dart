@@ -138,16 +138,17 @@ class _PlayScreenState extends State<PlayScreen> {
         SizedBox(
           height: screenHeight * .02,
         ),
-        Slider(
-          max: context.watch<SongProvider>().finalSlider,
-          min: 0.0,
-          value: context.watch<SongProvider>().slidervalue,
-          onChanged: (values) {
-            context.read<SongProvider>().slidervalue = values;
-            context.read<SongProvider>().seekSong(values.toInt());
-          },
-          activeColor: AppColors.textColor,
-        ),
+        Consumer<SongProvider>(
+            builder: (context, value, child) => Slider(
+                  max: context.watch<SongProvider>().finalSlider,
+                  min: 0.0,
+                  value: context.watch<SongProvider>().slidervalue,
+                  onChanged: (values) {
+                    context.read<SongProvider>().slidervalue = values;
+                    context.read<SongProvider>().seekSong(values.toInt());
+                  },
+                  activeColor: AppColors.textColor,
+                )),
         Padding(
           padding:
               EdgeInsets.only(left: screenWidth * .1, right: screenWidth * .1),

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter_application_1/appListTile.dart';
 import 'package:flutter_application_1/frame.dart';
 import 'package:flutter_application_1/home.dart';
 import 'package:flutter_application_1/providers/songProvider.dart';
@@ -40,9 +41,36 @@ class _SongListState extends State<SongList> {
                       height: screenHeight * .003,
                     ),
                     Padding(
-                      padding: EdgeInsets.only(
-                          left: screenWidth * .01, right: screenWidth * 0.01),
-                      child: ListTile(
+                        padding: EdgeInsets.only(
+                            left: screenWidth * .01, right: screenWidth * 0.01),
+                        child: AppListTile(
+                          ontap: () {
+                            context.read<SongProvider>().playAudio(index);
+                            panelController.open();
+                          },
+                          colorText: AppColors.textColor,
+                          text: context
+                              .watch<SongProvider>()
+                              .songInfo[index]
+                              .album,
+                          colorListTile: AppColors.listTileColor,
+                          TitleText: context
+                              .watch<SongProvider>()
+                              .songInfo[index]
+                              .title,
+                          index: index,
+                          image: context
+                                      .watch<SongProvider>()
+                                      .songInfo[index]
+                                      .albumArtwork ==
+                                  null
+                              ? AssetImage('assets/logo.png')
+                              : FileImage(File(context
+                                  .watch<SongProvider>()
+                                  .songInfo[index]
+                                  .albumArtwork)) as ImageProvider,
+                        )
+                        /* ListTile(
                           onTap: () {
                             context.read<SongProvider>().playAudio(index);
                             panelController.open();
@@ -121,8 +149,8 @@ class _SongListState extends State<SongList> {
                                 ),
                               ],
                             ),
-                          )),
-                    ),
+                          ))*/
+                        ),
                   ],
                 );
               },
