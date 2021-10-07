@@ -23,38 +23,39 @@ class AppListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    return ListTile(
-        onTap: ontap,
-        trailing: IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.add,
-              color: colorText,
-            )),
-        subtitle: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Text(
-            text,
-            maxLines: 1,
-            style: TextStyle(color: colorText),
-          ),
-        ),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-        tileColor: colorListTile,
-        title: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Text(
-            TitleText,
-            maxLines: 1,
-            style: TextStyle(color: colorText, fontSize: 15),
-          ),
-        ),
-        leading: SizedBox(
-            width: screenWidth * .16,
-            child: Stack(children: [
+    return Container(
+        height: screenHeight * .09,
+        child: ListTile(
+            onTap: ontap,
+            trailing: IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.add,
+                  color: colorText,
+                )),
+            subtitle: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Text(
+                text,
+                maxLines: 1,
+                style: TextStyle(color: colorText, fontSize: 11),
+              ),
+            ),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+            tileColor: colorListTile,
+            title: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Text(
+                TitleText,
+                maxLines: 1,
+                style: TextStyle(color: colorText, fontSize: 14),
+              ),
+            ),
+            leading: Stack(children: [
               Container(
                 height: screenHeight * .099,
-                width: screenWidth * .19,
+                width: screenWidth * .17,
                 padding: EdgeInsets.only(
                   right: screenWidth * .01,
                   left: screenWidth * .01,
@@ -90,24 +91,3 @@ class AppListTile extends StatelessWidget {
             ])));
   }
 }
- /*Container(
-           
-            height: screenHeight * .099,
-            width: screenWidth * .19,
-            padding: EdgeInsets.only(
-              right: screenWidth * .01,
-              left: screenWidth * .01,
-              top: screenWidth * .0076,
-              bottom: screenWidth * .0076,
-            ),
-            child: ClipRRect(
-                borderRadius: BorderRadius.circular(4),
-                child: Image(fit: BoxFit.cover, image: image)),
-          )*/
-          /* Text(
-                (index + 1).toString().length == 1
-                    ? "0" + (index + 1).toString()
-                    : (index + 1).toString(),
-                style: TextStyle(color: colorText),
-                maxLines: 1,
-              )*/

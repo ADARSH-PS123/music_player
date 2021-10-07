@@ -135,8 +135,7 @@ class SongProvider with ChangeNotifier {
   }
 
   search(String value) {
-    songs = songInfo;
-    songInfo = songs.where((element) {
+    songs = songInfo.where((element) {
       final searchName = value.toLowerCase();
       final songName = element.title.toLowerCase();
       return songName.contains(searchName);

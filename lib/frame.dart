@@ -1,4 +1,4 @@
-import 'package:flutter_application_1/appSearch.dart';
+import 'package:flutter_application_1/appSearchScreen.dart';
 import 'package:flutter_application_1/colors.dart' as AppColors;
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/providers/songProvider.dart';
@@ -32,7 +32,12 @@ class _FrameState extends State<Frame> {
                 style: TextStyle(fontSize: 23, color: AppColors.textColor),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AppSearchScreen()));
+                },
                 icon: Icon(
                   Icons.search,
                   size: 25,
